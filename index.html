@@ -198,11 +198,26 @@ section{position:relative}
 .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
 .svc-card{background:#fff;border-radius:20px;overflow:hidden;border:1px solid var(--line);transition:all .5s cubic-bezier(.2,.8,.2,1);position:relative;display:flex;flex-direction:column}
 .svc-card:hover{transform:translateY(-10px);box-shadow:var(--shadow)}
-.svc-img{height:230px;overflow:hidden;position:relative;cursor:pointer}
-.svc-img img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+/* the photo keeps its own 2:3 shape — nothing is cut off — and sits on a soft plate,
+   the same size in every card, so the two rows of three stay exactly level */
+.svc-img{
+  position:relative;cursor:pointer;padding:22px 22px 6px;
+  background:linear-gradient(180deg,#f4f8f8,#eef4f4);
+}
+.svc-shot{
+  width:100%;max-width:300px;margin:0 auto;aspect-ratio:2/3;overflow:hidden;
+  border-radius:14px;box-shadow:0 10px 30px -14px rgba(14,27,36,.35);background:#fff;
+}
+.svc-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
 .svc-card:hover .svc-img img{transform:scale(1.08)}
-.svc-img::after{content:"⤢";position:absolute;top:14px;right:14px;width:34px;height:34px;background:rgba(255,255,255,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--teal);font-size:.9rem;opacity:0;transition:opacity .4s}
+.svc-img::after{content:"⤢";position:absolute;top:34px;right:34px;z-index:2;width:34px;height:34px;background:rgba(255,255,255,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--teal);font-size:.9rem;opacity:0;transition:opacity .4s}
 .svc-img:hover::after{opacity:1}
+.svc-img.no-shot::after{display:none}
+.svc-shot-icon{
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,var(--teal),var(--teal-bright));
+}
+.svc-shot-icon svg{width:92px;height:92px}
 .svc-body{padding:30px 28px 34px;flex:1;display:flex;flex-direction:column}
 .svc-tag{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:10px}
 .svc-body h3{font-size:1.55rem;color:var(--ink);margin-bottom:14px}
@@ -341,6 +356,8 @@ body.en [data-en]{display:revert}
   .wrap{padding:0 20px}
   .section-pad{padding:80px 0}
   .services-grid,.gallery-grid{grid-template-columns:1fr}
+  .svc-img{padding:16px 16px 4px}
+  .svc-shot{max-width:260px}
   .gal-item.tall,.gal-item.wide{grid-row:auto;grid-column:auto}
   .rev-card{width:300px}
   .contact-info{padding:44px 30px}
@@ -482,7 +499,7 @@ body.en [data-en]{display:revert}
     <div class="services-grid">
       <div class="svc-card reveal">
         <div class="svc-img" onclick="openLightbox('https://raw.githubusercontent.com/agelmet/MELIKIDIS/d0c97f5033b74102dc2b434556a7780f21ceb9aa/big_sr48379_feb574ce20614a172235676bdf0477bf.webp')">
-          <img src="https://raw.githubusercontent.com/agelmet/MELIKIDIS/d0c97f5033b74102dc2b434556a7780f21ceb9aa/big_sr48379_feb574ce20614a172235676bdf0477bf.webp" alt="Οδοντικά Εμφυτεύματα">
+          <div class="svc-shot"><img src="https://raw.githubusercontent.com/agelmet/MELIKIDIS/d0c97f5033b74102dc2b434556a7780f21ceb9aa/big_sr48379_feb574ce20614a172235676bdf0477bf.webp" alt="Οδοντικά Εμφυτεύματα"></div>
         </div>
         <div class="svc-body">
           <div class="svc-tag">NYU TRAINED</div>
@@ -493,7 +510,7 @@ body.en [data-en]{display:revert}
       </div>
       <div class="svc-card reveal d1">
         <div class="svc-img" onclick="openLightbox('https://raw.githubusercontent.com/agelmet/MELIKIDIS/d0c97f5033b74102dc2b434556a7780f21ceb9aa/big_sr48384_e8208f3caba5c6a95734c736db93f06c.webp')">
-          <img src="https://raw.githubusercontent.com/agelmet/MELIKIDIS/d0c97f5033b74102dc2b434556a7780f21ceb9aa/big_sr48384_e8208f3caba5c6a95734c736db93f06c.webp" alt="Αισθητική Οδοντιατρική">
+          <div class="svc-shot"><img src="https://raw.githubusercontent.com/agelmet/MELIKIDIS/d0c97f5033b74102dc2b434556a7780f21ceb9aa/big_sr48384_e8208f3caba5c6a95734c736db93f06c.webp" alt="Αισθητική Οδοντιατρική"></div>
         </div>
         <div class="svc-body">
           <div class="svc-tag" data-el>ΑΙΣΘΗΤΙΚΗ</div><div class="svc-tag" data-en>AESTHETICS</div>
@@ -504,7 +521,7 @@ body.en [data-en]{display:revert}
       </div>
       <div class="svc-card reveal d2">
         <div class="svc-img" onclick="openLightbox('https://raw.githubusercontent.com/agelmet/MELIKIDIS/d0c97f5033b74102dc2b434556a7780f21ceb9aa/big_sr48382_ca18e27a01bd806015f51b942de43cb2.webp')">
-          <img src="https://raw.githubusercontent.com/agelmet/MELIKIDIS/d0c97f5033b74102dc2b434556a7780f21ceb9aa/big_sr48382_ca18e27a01bd806015f51b942de43cb2.webp" alt="Όψεις Ρητίνης">
+          <div class="svc-shot"><img src="https://raw.githubusercontent.com/agelmet/MELIKIDIS/d0c97f5033b74102dc2b434556a7780f21ceb9aa/big_sr48382_ca18e27a01bd806015f51b942de43cb2.webp" alt="Όψεις Ρητίνης"></div>
         </div>
         <div class="svc-body">
           <div class="svc-tag" data-el>ΟΨΕΙΣ</div><div class="svc-tag" data-en>VENEERS</div>
@@ -515,7 +532,7 @@ body.en [data-en]{display:revert}
       </div>
       <div class="svc-card reveal">
         <div class="svc-img" onclick="openLightbox('https://raw.githubusercontent.com/agelmet/MELIKIDIS/d0c97f5033b74102dc2b434556a7780f21ceb9aa/big_sr48383_ace749bca7e60f5ed251583e9f1aa9b6.webp')">
-          <img src="https://raw.githubusercontent.com/agelmet/MELIKIDIS/d0c97f5033b74102dc2b434556a7780f21ceb9aa/big_sr48383_ace749bca7e60f5ed251583e9f1aa9b6.webp" alt="Προσθετική">
+          <div class="svc-shot"><img src="https://raw.githubusercontent.com/agelmet/MELIKIDIS/d0c97f5033b74102dc2b434556a7780f21ceb9aa/big_sr48383_ace749bca7e60f5ed251583e9f1aa9b6.webp" alt="Προσθετική"></div>
         </div>
         <div class="svc-body">
           <div class="svc-tag" data-el>ΑΠΟΚΑΤΑΣΤΑΣΗ</div><div class="svc-tag" data-en>RESTORATION</div>
@@ -526,7 +543,7 @@ body.en [data-en]{display:revert}
       </div>
       <div class="svc-card reveal d1">
         <div class="svc-img" onclick="openLightbox('https://raw.githubusercontent.com/agelmet/MELIKIDIS/d0c97f5033b74102dc2b434556a7780f21ceb9aa/big_sr48375_7dfc053a31caacfb9fcf6fdcda446360.webp')">
-          <img src="https://raw.githubusercontent.com/agelmet/MELIKIDIS/d0c97f5033b74102dc2b434556a7780f21ceb9aa/big_sr48375_7dfc053a31caacfb9fcf6fdcda446360.webp" alt="Bonding Δοντιών">
+          <div class="svc-shot"><img src="https://raw.githubusercontent.com/agelmet/MELIKIDIS/d0c97f5033b74102dc2b434556a7780f21ceb9aa/big_sr48375_7dfc053a31caacfb9fcf6fdcda446360.webp" alt="Bonding Δοντιών"></div>
         </div>
         <div class="svc-body">
           <div class="svc-tag">BONDING</div>
@@ -536,8 +553,10 @@ body.en [data-en]{display:revert}
         </div>
       </div>
       <div class="svc-card reveal d2">
-        <div class="svc-img" style="background:linear-gradient(135deg,var(--teal),var(--teal-bright));display:flex;align-items:center;justify-content:center;cursor:default">
+        <div class="svc-img no-shot" style="cursor:default">
+          <div class="svc-shot svc-shot-icon">
           <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.4" opacity=".85"><path d="M12 2c-2.5 0-4 1.5-5 3-1-1-2.5-1.5-3.5-.5-1.5 1.5-1 5 0 8 .8 2.4 1.5 5 2 7 .4 1.6 1 2.5 2 2.5 1.2 0 1.3-1.5 1.5-3 .2-1.3.5-2.5 1-2.5s.8 1.2 1 2.5c.2 1.5.3 3 1.5 3 1 0 1.6-.9 2-2.5.5-2 1.2-4.6 2-7 1-3 1.5-6.5 0-8-1-1-2.5-.5-3.5.5-1-1.5-2.5-3-5-3z"/></svg>
+          </div>
         </div>
         <div class="svc-body">
           <div class="svc-tag" data-el>ΠΡΟΛΗΨΗ</div><div class="svc-tag" data-en>PREVENTION</div>
